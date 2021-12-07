@@ -1,0 +1,51 @@
+﻿@model System.Data.DataTable
+@using System.Data
+
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="~/Content/assets/vendor/animate/animate.css">
+
+<link rel="stylesheet" href="~/Content/assets/css/bootstrap.css">
+
+<link rel="stylesheet" href="~/Content/assets/css/maicons.css">
+
+<link rel="stylesheet" href="~/Content/assets/vendor/owl-carousel/css/owl.carousel.css">
+
+<link rel="stylesheet" href="~/Content/assets/css/theme.css">
+
+
+<p style="margin-top:10%">
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table table-striped">
+    <tr>
+       
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Address</th>
+        <th>PhoneNumber</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+
+
+    </tr>
+ 
+    @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            <tr>
+                <td>@Model.Rows[i][1]</td>
+                <td>@Model.Rows[i][2]</td>
+                <td>@Model.Rows[i][3]</td>
+                <td>@Model.Rows[i][4]</td>
+                <td>@Model.Rows[i][5]</td>
+
+                <td>@Html.ActionLink("Edit", "Edit")</td>
+                <td>@Html.ActionLink("Delete", "Delete")</td>
+
+            </tr>
+        }
+
+</table>
