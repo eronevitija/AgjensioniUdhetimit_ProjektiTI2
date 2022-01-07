@@ -21,7 +21,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("agjensioniConnection", throwIfV1Schema: false)
         {
         }
 
@@ -31,5 +31,11 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
         }
 
         public System.Data.Entity.DbSet<AgjensioniUdhetimit_ProjektiTI2.Models.Client> Clients { get; set; }
+
+        public System.Data.Entity.DbSet<AgjensioniUdhetimit_ProjektiTI2.Models.Staff> Staffs { get; set; }
+
+        public System.Data.Entity.DbSet<AgjensioniUdhetimit_ProjektiTI2.Models.Ticket> Tickets { get; set; }
+
+        public System.Data.Entity.DbSet<AgjensioniUdhetimit_ProjektiTI2.Models.Booking> Bookings { get; set; }
     }
 }

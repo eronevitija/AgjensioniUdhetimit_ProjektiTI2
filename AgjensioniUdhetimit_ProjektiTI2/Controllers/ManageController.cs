@@ -10,7 +10,7 @@ using AgjensioniUdhetimit_ProjektiTI2.Models;
 
 namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

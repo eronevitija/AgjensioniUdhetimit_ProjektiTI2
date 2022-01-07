@@ -10,34 +10,42 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
     {
         public int BookingID { get; set; }
         [Required]
-        public DateTime BookingDate { get; set; }
-        public int ClientID { get; set; }
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public string GoingFrom { get; set; }
+        [Required]
+        public string GoingTo { get; set; }
+        [Required]
+        public DateTime ArrivalDate { get; set; }
+        [Required]
+        public DateTime DepartureDate { get; set; }
+        [Required]
+        public int NOPeople { get; set; }
 
         public Booking()
         {
 
         }
-
-        public Booking(int bookingID,DateTime bookingDate,int clientID)
+        public Booking(int bookingID,string firstName,string lastName, string email,
+            string goingFrom, string goingTo, DateTime arrivalDate, DateTime departureDate,
+            int noPeople)
         {
             BookingID = bookingID;
-            BookingDate = bookingDate;
-            ClientID = clientID;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            GoingFrom = goingFrom;
+            GoingTo = goingTo;
+            ArrivalDate = arrivalDate;
+            DepartureDate = departureDate;
+            NOPeople = noPeople;
         }
 
-        public Booking(DateTime bookingDate, int clientID)
-        {
-            BookingDate = bookingDate;
-            ClientID = clientID;
-        }
-
-        public Booking(DateTime bookingDate, int clientID, string insertBy, DateTime insertDate)
-        {
-            BookingDate = bookingDate;
-            ClientID = clientID;
-            InsertBy = insertBy;
-            InsertDate = insertDate;
-        }
+       
 
     }
 }

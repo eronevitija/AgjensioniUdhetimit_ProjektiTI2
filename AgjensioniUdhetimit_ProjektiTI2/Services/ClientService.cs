@@ -11,155 +11,230 @@ using AgjensioniUdhetimit_ProjektiTI2.Models;
 namespace AgjensioniUdhetimit_ProjektiTI2.Services
 {
     public class ClientService 
-    { 
+    {
 
-        #region GetAllClient
-
-        public DataTable GetAllClient()
+        #region GetAllClients
+        public static List<Client> GetAllClients()
         {
-                try
+            try
+            {
+                List<Client> clients = new List<Client>();
+                DataTable dataTable = new DataTable();
+                using (DatabaseConnection.sqlConnection= new SqlConnection(DatabaseConnection.connString))
                 {
-                    using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
+                    DatabaseConnection.sqlConnection.Open();
+                    DatabaseConnection.sqlDataAdapter = new SqlDataAdapter("usp_ShowClientList", DatabaseConnection.sqlConnection);
+                    DatabaseConnection.sqlDataAdapter.Fill(dataTable);
+                    foreach (DataRow row in dataTable.Rows)
                     {
-                        DatabaseConnection.sqlDataAdapter = new SqlDataAdapter("usp_ShowClientList", DatabaseConnection.connString);
-                        DataTable dataTable = new DataTable();
-                        DatabaseConnection.sqlDataAdapter.Fill(dataTable);
-
-                        return dataTable;
+                        Client client = new Client
+                            (
+                                (int)row["ClientID"],
+                                row["FirstName"].ToString(),
+                                row["LastName"].ToString(),
+                                row["Address"].ToString(),
+                                (int)row["PhoneNumber"],
+                                row["Email"].ToString()
+                            );
+                        clients.Add(client);
                     }
+                    return clients;
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion
 
-        #region InsertClient
-        public bool InsertClient(Client client)
-            {
-                try
-                {
-                    using (SqlConnection conn = new SqlConnection(DatabaseConnection.connString))
-                    {
-                        conn.Open();
-                        SqlCommand cmd = new SqlCommand("usp_InsertClient", conn);
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@FirstName", client.FirstName);
-                        cmd.Parameters.AddWithValue("@LastName", client.LastName);
-                        cmd.Parameters.AddWithValue("@Address", client.Address);
-                        cmd.Parameters.AddWithValue("@PhoneNumber", client.PhoneNumber);
-                        cmd.Parameters.AddWithValue("@Email", client.Email);
-                        //cmd.Parameters.AddWithValue("@InsertBy", client.InsertBy);
-                        //cmd.Parameters.AddWithValue("@InsertDate", client.InsertDate);
-                        cmd.ExecuteNonQuery();
-                    }
-                    return true;
-                }
+        #region Insert
+        public void Insert(Client client)
+        {
+               try
+               {
+                   using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
+                   {
+                        DatabaseConnection.sqlConnection.Open();
+                        DatabaseConnection.cmd = new SqlCommand("usp_InsertClient", DatabaseConnection.sqlConnection);
+                        DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
+                        DatabaseConnection.cmd.Parameters.AddWithValue("@FirstName", client.FirstName);
+                        DatabaseConnection.cmd.Parameters.AddWithValue("@LastName", client.LastName); 
+                        DatabaseConnection.cmd.Parameters.AddWithValue("@Address", client.Address);
+                        DatabaseConnection.cmd.Parameters.AddWithValue("@PhoneNumber", client.PhoneNumber);
+                        DatabaseConnection.cmd.Parameters.AddWithValue("@Email", client.Email);
+                        DatabaseConnection.cmd.Parameters.AddWithValue("@InsertBy", 1);
+                        DatabaseConnection.cmd.Parameters.AddWithValue("@InsertDate", DateTime.Now);
+                        DatabaseConnection.cmd.ExecuteNonQuery();
+                   }
+               }
                 catch (Exception ex)
-                {
-                return false;
-                }
-            }
-            #endregion
+               {
+                throw ex;
+               }
+        }
+        #endregion
 
-        #region DeleteClient
-            public bool DeleteClient(int id)
+        #region Delete
+        public void Delete(int? clientID)
+        {
+            try
             {
-                try
-                {
-                    using (SqlConnection sqlConnection = new SqlConnection(DatabaseConnection.connString))
-                    {
-                        sqlConnection.Open();
-                        SqlCommand cmd = new SqlCommand("usp_DeleteClient", sqlConnection);
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@ClientID", id);
-                        cmd.ExecuteNonQuery();
-                    }
-                    return true;
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-            }
-
-            #endregion
-
-        #region UpdateClient
-            public bool UpdateClient(Client client)
-            {
-                try
-                {
-                    using (SqlConnection conn = new SqlConnection(DatabaseConnection.connString))
-                    {
-                        conn.Open();
-                        SqlCommand cmd = new SqlCommand("usp_EditClient", conn);
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@ClientID", client.ClientID);
-                        cmd.Parameters.AddWithValue("@FirstName", client.FirstName);
-                        cmd.Parameters.AddWithValue("@LastName", client.LastName);
-                        cmd.Parameters.AddWithValue("@Address", client.Address);
-                        cmd.Parameters.AddWithValue("@PhoneNumber", client.PhoneNumber);
-                        cmd.Parameters.AddWithValue("@Email", client.Email);
-                        cmd.Parameters.AddWithValue("@LastUpdateBy", 1);
-                        cmd.Parameters.AddWithValue("@LastUpdateDate", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@LastUpdateNumber", client.LastUpdateNumber);
-                    }
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-            #endregion
-        
-        #region GetClientByID
-            public Client GetClientByID(int id)
-            {
-                DataSet ds;
-                Client client;
-
-                try
+                if (clientID != null || clientID > 0)
                 {
                     using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
                     {
                         DatabaseConnection.sqlConnection.Open();
-                        DatabaseConnection.cmd = new SqlCommand("usp_GetClientByID", DatabaseConnection.sqlConnection);
+
+                        DatabaseConnection.cmd = new SqlCommand("usp_DeleteClient", DatabaseConnection.sqlConnection);
                         DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
 
-                        DatabaseConnection.cmd.Parameters.AddWithValue("@ID", id);
-                        DatabaseConnection.sqlDataAdapter = new SqlDataAdapter(DatabaseConnection.cmd);
-                        ds = new DataSet();
-                        DatabaseConnection.sqlDataAdapter.Fill(ds);
-                        string clientID = Convert.ToString(ds.Tables[0].Rows[0]["ClientID"]);
-                        string firstName = Convert.ToString(ds.Tables[0].Rows[0]["FirstName"]);
-                        string lastName = Convert.ToString(ds.Tables[0].Rows[0]["LastName"]);
-                        string address = Convert.ToString(ds.Tables[0].Rows[0]["Address"]);
-                        string phoneNumber = Convert.ToString(ds.Tables[0].Rows[0]["PhoneNumber"]);
-                        string email = Convert.ToString(ds.Tables[0].Rows[0]["Email"]);
-
-                        client = new Client(Int32.Parse(clientID), firstName, lastName, address, Int32.Parse(phoneNumber), email);
-
-                        return client;
-
+                        DatabaseConnection.cmd.Parameters.AddWithValue("@ClientID", clientID);
+                        DatabaseConnection.cmd.ExecuteNonQuery();
                     }
                 }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
             }
+            catch (Exception ex)
+            {               
+                throw ex;
+            }
+        }
 
         #endregion
 
+        #region GetClientByID
+        public Client GetClientByID(int id)
+        {
+            DataSet ds;
+            Client client;
+            try
+            {
+                using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
+                {
+                    DatabaseConnection.sqlConnection.Open();
+                    DatabaseConnection.cmd = new SqlCommand("usp_GetClientByID", DatabaseConnection.sqlConnection);
+                    DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@ID", id);
+                    DatabaseConnection.sqlDataAdapter = new SqlDataAdapter(DatabaseConnection.cmd);
+                    ds = new DataSet();
+                    DatabaseConnection.sqlDataAdapter.Fill(ds);
+                    string clientID = Convert.ToString((ds.Tables[0].Rows[0]["ClientID"]));
+                    string firstName = Convert.ToString(ds.Tables[0].Rows[0]["FirstName"]);
+                    string lastName = Convert.ToString(ds.Tables[0].Rows[0]["LastName"]);
+                    string address = Convert.ToString(ds.Tables[0].Rows[0]["Address"]);
+                    string phoneNumber = Convert.ToString(ds.Tables[0].Rows[0]["PhoneNumber"]);
+                    string email = Convert.ToString(ds.Tables[0].Rows[0]["Email"]);
+                    client = new Client(Int32.Parse(clientID), firstName, lastName, address, Int32.Parse(phoneNumber), email);
+                    return client;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
 
-    
+        #region UpdateClient
+        public void Update(Client client)
+        {
+            try
+            {
+                using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
+                {
+                    DatabaseConnection.sqlConnection.Open();
 
+                    DatabaseConnection.cmd = new SqlCommand("usp_EditClient", DatabaseConnection.sqlConnection);
+                    DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@ClientID", client.ClientID);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@FirstName", client.FirstName);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@LastName", client.LastName); 
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@Address", client.Address);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@Email", client.Email);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@PhoneNumber", client.PhoneNumber);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@LastUpdateDate", DateTime.Now);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@LastUpdateNumber", 1);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@LastUpdateBy", 1);
+                    DatabaseConnection.cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        #endregion
+
+        //#region SearchByNameAndAddress
+        //public Client GetClientName(string name)
+        //{
+        //    try
+        //    {
+        //        Client client = new Client();
+        //        using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
+        //        {
+        //            DatabaseConnection.sqlConnection.Open();
+        //            using (DatabaseConnection.cmd = new SqlCommand("usp_SearchClient", DatabaseConnection.sqlConnection))
+        //            {
+        //                DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
+        //                DatabaseConnection.cmd.Parameters.AddWithValue("@Name", name);
+
+        //                using (SqlDataReader reader = DatabaseConnection.cmd.ExecuteReader())
+        //                {
+        //                    if (reader.Read())
+        //                    {
+        //                        client.ClientID = (int)reader["ClientID"];
+        //                        client.FirstName = reader["FirstName"].ToString();
+        //                        client.LastName = reader["LastName"].ToString();
+        //                        client.Address = reader["Address"].ToString();
+        //                        client.PhoneNumber = (int)reader["PhoneNumber"];
+        //                        client.Email = reader["Email"].ToString();
+
+
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        return client;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
+        //#endregion
+
+
+        public Client Search(string name)
+        {
+            DataSet ds;
+            Client client;
+            try
+            {
+                using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
+                {
+                    DatabaseConnection.sqlConnection.Open();
+                    DatabaseConnection.cmd = new SqlCommand("usp_SearchClient", DatabaseConnection.sqlConnection);
+                    DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@Name", name);
+                    DatabaseConnection.sqlDataAdapter = new SqlDataAdapter(DatabaseConnection.cmd);
+                    ds = new DataSet();
+                    DatabaseConnection.sqlDataAdapter.Fill(ds);
+                    string clientID = Convert.ToString((ds.Tables[0].Rows[0]["ClientID"]));
+                    string firstName = Convert.ToString(ds.Tables[0].Rows[0]["FirstName"]);
+                    string lastName = Convert.ToString(ds.Tables[0].Rows[0]["LastName"]);
+                    string address = Convert.ToString(ds.Tables[0].Rows[0]["Address"]);
+                    string phoneNumber = Convert.ToString(ds.Tables[0].Rows[0]["PhoneNumber"]);
+                    string email = Convert.ToString(ds.Tables[0].Rows[0]["Email"]);
+                    client = new Client(Int32.Parse(clientID), firstName, lastName, address, Int32.Parse(phoneNumber), email);
+                    return client;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
+

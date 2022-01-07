@@ -1,21 +1,22 @@
-﻿using System;
+﻿using AgjensioniUdhetimit_ProjektiTI2.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data;
-using System.Data.SqlClient;
 using AgjensioniUdhetimit_ProjektiTI2.Models;
-using AgjensioniUdhetimit_ProjektiTI2.Services;
 
 namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
 {
+    [Authorize]
     public class StaffController : Controller
     {
+        StaffService staffService = new StaffService();
+        //RoleService roleService = new RoleService();
         // GET: Staff
         public ActionResult Index()
         {
-            return View();
+            return View(staffService.GetAllStaff());
         }
 
         // GET: Staff/Details/5
@@ -32,34 +33,29 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
 
         // POST: Staff/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Staff staff)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                staffService.Insert(staff);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(staff);
         }
 
         // GET: Staff/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(staffService.GetStaffById(id));
         }
 
         // POST: Staff/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Staff staff)
         {
             try
             {
-                // TODO: Add update logic here
-
+                staffService.EditStaff(staff);
                 return RedirectToAction("Index");
             }
             catch
@@ -71,7 +67,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
         // GET: Staff/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(staffService.GetStaffById(id));
         }
 
         // POST: Staff/Delete/5
@@ -80,8 +76,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
+                staffService.Delete(id);
                 return RedirectToAction("Index");
             }
             catch
@@ -90,38 +85,21 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
             }
         }
 
-        StaffService staffService;
-
-        public StaffController()
+        public ActionResult CheckLogin(string username,string password)
         {
-            staffService = new StaffService();
+            if (ModelState.IsValid)
+            {
+                StaffService.CheckLogInConfig(username, password);
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
-        public DataTable ShowStaff()
+        public ActionResult GetAllStaff()
         {
-            return staffService.GetStaff();
+            List<Staff> staff = staffService.GetAllStaff();
+            return Json(new { data = staff }, JsonRequestBehavior.AllowGet);
         }
-        public bool CreateStaff(Staff staff)
-        {
-            return staffService.InsertStaff(staff);
-        }
-
-        // get item by id
-        public Staff GetStaffByID(int id)
-        {
-            return staffService.GetItemById(id);
-        }
-
-        public bool DeleteStaff(int id)
-        {
-            return staffService.DeleteStaff(id);
-        }
-
-        public bool UpdateStaf(Staff staff)
-        {
-            return staffService.EditStaff(staff);
-        }
-
 
     }
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,30 +7,41 @@
 
 </head>
 <body>
-    <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-light navbar-float">
-            <div class="container">
-
-                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a href="#" style="margin-left:5%">
+                    @Html.ActionLink("Travel Agency", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-secondary" })
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="collpase navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Clients, "Index", "Clients", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Staff, "Index", "Staff", null, new { @class = "nav-link" })</li>
 
-                @Html.ActionLink("Travel Agency", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                
-                <div class="navbar-collapse collapse" id="navbarContent">
-                    <ul class="navbar-nav ml-lg-4 pt-3 pt-lg-0 mr-2">
-                        <li class="nav-item">@Html.ActionLink("Client", "Index", "Client", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Staff", "Index", "Staff", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Booking", "Index", "Booking", null, new { @class = "nav-link" }) </li>
+                        <li class="nav-item">@Html.ActionLink("Booking", "Index", "Booking", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Ticket", "Index", "Ticket", null, new { @class = "nav-link" })</li>
                     </ul>
+                    @*<a href="@Url.Action("ChangeLanguage","Home", new { lang = "en"})">EN</a> |
+                    <a href="@Url.Action("ChangeLanguage","Home", new { lang = "al"})">AL</a> |*@
+                        @Html.Partial("_LoginPartial")
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
+    }
 
-    <div class="container body-content">
-        @RenderBody()
-        <footer class="page-footer" id="footer">
+
+
+
+<div class="container body-content">
+    @RenderBody()
+    @if (User.Identity.IsAuthenticated)
+    {
+        <footer class="page-footer mt-5" id="footer">
             <div class="container">
                 <div class="row justify-content-center mb-5">
                     <div class="col-lg-3 py-3">
@@ -90,12 +101,13 @@
                 </div>
             </div>
         </footer>
+    }
     </div>
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
-   
+    
 </body>
 </html>

@@ -9,14 +9,15 @@ using AgjensioniUdhetimit_ProjektiTI2.Services;
 
 namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
 {
+    //[Authorize]
     public class BookingController : Controller
     {
-
+        BookingService bookingService = new BookingService();
 
         // GET: Booking
         public ActionResult Index()
         {
-            return View();
+            return View(BookingService.GetAllBookings());
         }
 
         // GET: Booking/Details/5
@@ -33,34 +34,29 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
 
         // POST: Booking/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Booking booking)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                  bookingService.Insert(booking);
+                  return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+             return View(booking);
         }
 
         // GET: Booking/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(bookingService.GetBookingById(id));
         }
 
         // POST: Booking/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Booking booking)
         {
             try
             {
-                // TODO: Add update logic here
-
+                bookingService.Update(booking);
                 return RedirectToAction("Index");
             }
             catch
@@ -72,7 +68,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
         // GET: Booking/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(bookingService.GetBookingById(id));
         }
 
         // POST: Booking/Delete/5
@@ -81,46 +77,13 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
+                bookingService.Delete(id);
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
-        }
-
-        BookingService bookingService;
-
-        public BookingController()
-        {
-            bookingService = new BookingService();
-        }
-
-        public DataTable ShowBooking()
-        {
-            return bookingService.GetAllBookings();
-        }
-
-        public bool CreateBooking(Booking booking)
-        {
-            return bookingService.InsertBooking(booking);
-        }
-
-        public bool DeleteBooking(int id)
-        {
-            return bookingService.DeleteBooking(id);
-        }
-
-        public bool EditReservation(Booking booking)
-        {   
-            return bookingService.EditBooking(booking);
-        }
-
-        public Booking GetItem(int id)
-        {
-            return bookingService.GetBookingByID(id);
         }
 
     }

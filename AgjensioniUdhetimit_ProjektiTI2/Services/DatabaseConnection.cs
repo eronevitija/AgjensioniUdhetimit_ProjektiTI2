@@ -11,7 +11,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
     {
         //Add the connection string inside the Web.config file, see example for "DefaultConnection"
         
-        public static string connString = ConfigurationManager.ConnectionStrings["agjensioniConnection"].ConnectionString.ToString();
+        public static string connString = ConfigurationManager.ConnectionStrings["agjensioniConnection"].ToString();
 
 
         //Add needed stuff to connect with the database

@@ -5,7 +5,7 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
-
+using AgjensioniUdhetimit_ProjektiTI2.Resources;
 
 namespace AgjensioniUdhetimit_ProjektiTI2.Models
 {
@@ -14,8 +14,10 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
         public int ClientID { get; set; }
         [Required]
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
+
         [Required]
         public string Address { get; set; }
         [Required]
@@ -25,23 +27,11 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
 
         public Client()
         {
-
         }
 
-        public Client(int clientId,string firstName,string lastName,string address,
-                      int phoneNumber,string email)
-        {
-            ClientID = clientId;
-            FirstName = firstName;
-            LastName = lastName;
-            Address = address;
-            PhoneNumber = phoneNumber;
-            Email = email;
-
-        }
-        public Client(string firstName, string lastName, string address,
-                      int phoneNumber,string email)
-        {
+       public Client(int clientID, string firstName, string lastName, string address,  int phoneNumber, string email)
+       {
+            ClientID = clientID;
             FirstName = firstName;
             LastName = lastName;
             Address = address;
@@ -49,18 +39,5 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
             Email = email;
         }
 
-        public Client(string firstName, string lastName, string address, 
-                      int phoneNumber, string email,string insertBy,DateTime insertDate)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            Address = address;
-            PhoneNumber = phoneNumber;
-            Email = email;
-            InsertBy = insertBy;
-            InsertDate = insertDate;
-        }
-
-        
     }
 }
