@@ -9,7 +9,7 @@ using AgjensioniUdhetimit_ProjektiTI2.Services;
 
 namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class BookingController : Controller
     {
         BookingService bookingService = new BookingService();

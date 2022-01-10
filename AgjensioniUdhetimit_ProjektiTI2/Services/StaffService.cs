@@ -52,7 +52,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
         }
         #endregion
 
-
         #region DeleteStaff
         public bool DeleteStaff(int id)
         {
@@ -201,39 +200,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
 
         #endregion
 
-        public static bool CheckLogInConfig(string username, string password)
-        {
-            bool gjendja = false;
-            try
-            {
-                using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
-                {
-                    DataTable dt = new DataTable();
-                    DatabaseConnection.sqlDataAdapter = new SqlDataAdapter("usp_LoginRole", DatabaseConnection.sqlConnection);
-                    DatabaseConnection.sqlDataAdapter.Fill(dt);
-                    string IdRecord = "";
-                    string passwordi = "";
-
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        IdRecord = dt.Rows[i][0].ToString();
-                        passwordi = dt.Rows[0][1].ToString();
-
-                        if (IdRecord.Equals(username) && passwordi.Equals(password))
-                        {
-                            gjendja = true;
-
-                        }
-                    }
-
-                }
-                return gjendja;
-            }
-            catch (Exception)
-            {
-                return gjendja;
-            }
-        }
 
     }
 }

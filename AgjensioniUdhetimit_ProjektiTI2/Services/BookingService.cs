@@ -17,35 +17,40 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
             try
             {
                 List<Booking> bookings = new List<Booking>();
-                DataTable dataTable = new DataTable();
 
                 using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
                 {
                     DatabaseConnection.sqlConnection.Open();
-                    DatabaseConnection.sqlDataAdapter = new SqlDataAdapter("usp_ShowBookingsList", DatabaseConnection.sqlConnection);
-                    DatabaseConnection.sqlDataAdapter.Fill(dataTable);
-                    foreach (DataRow row in dataTable.Rows)
+
+                    using (DatabaseConnection.cmd = new SqlCommand("usp_ShowBookingList", DatabaseConnection.sqlConnection))
                     {
-                        Booking booking = new Booking
-                            (
-                             (int)row["BookingID"],
-                             row["FirstName"].ToString(),
-                             row["LastName"].ToString(),
-                             row["Email"].ToString(),
-                             row["GoingFrom"].ToString(),
-                             row["GoingTo"].ToString(),
-                             (DateTime)row["ArrivalDate"],
-                             (DateTime)row["DepartureDate"],
-                             (int)row["NOPeople"]
-                            );
-                        bookings.Add(booking);
+                        DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
+                        using (SqlDataReader reader = DatabaseConnection.cmd.ExecuteReader())
+                        {
+                            while(reader.Read())
+                            {
+                                Booking booking = new Booking();
+
+                                booking.BookingID = (int)reader["BookingID"];
+                                booking.Name = reader["Name"].ToString();
+                                booking.GoingFrom = reader["GoingFrom"].ToString();
+                                booking.GoingTo = reader["GoingTo"].ToString();
+                                booking.DepartureDate = (DateTime)reader["DepartureDate"];
+                                booking.DayOfStaying = reader["DayOfStaying"].ToString();
+                                booking.HotelName = reader["HotelName"].ToString();
+                                booking.NumberOfRooms = (int)reader["NumberOfRooms"];
+                                booking.NOPeople = (int)reader["NOPeople"];
+
+                                bookings.Add(booking);
+                            }
+                        }
                     }
-                    return bookings;
                 }
+                return bookings;
             }
             catch (Exception ex)
             {
-                throw ex;
+                return null;
             }
         }
         #endregion
@@ -58,15 +63,15 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
                 using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
                 {
                     DatabaseConnection.sqlConnection.Open();
-                    DatabaseConnection.cmd = new SqlCommand("usp_InsertBooking", DatabaseConnection.sqlConnection);
+                    DatabaseConnection.cmd = new SqlCommand("usp_InsertBookings", DatabaseConnection.sqlConnection);
                     DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
-                    DatabaseConnection.cmd.Parameters.AddWithValue("@FirstName", booking.FirstName);
-                    DatabaseConnection.cmd.Parameters.AddWithValue("@LastName", booking.LastName); ;
-                    DatabaseConnection.cmd.Parameters.AddWithValue("@Email", booking.Email);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@Name", booking.Name);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@GoingFrom", booking.GoingFrom);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@GoingTo", booking.GoingTo);
-                    DatabaseConnection.cmd.Parameters.AddWithValue("@ArrivalDate", DateTime.Now);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@DepartureDate", DateTime.Now);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@DayOfStaying", booking.DayOfStaying);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@HotelName", booking.HotelName);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@NumberOfRooms", booking.NumberOfRooms);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@NOPeople", booking.NOPeople);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@InsertBy", 1);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@InsertDate", DateTime.Now);
@@ -91,18 +96,17 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
                     DatabaseConnection.cmd = new SqlCommand("usp_EditBooking", DatabaseConnection.sqlConnection);
                     DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
                     DatabaseConnection.cmd.Parameters.AddWithValue("@BookingID", booking.BookingID);
-                    DatabaseConnection.cmd.Parameters.AddWithValue("@FirstName", booking.FirstName);
-                    DatabaseConnection.cmd.Parameters.AddWithValue("@LastName", booking.LastName);
-                    DatabaseConnection.cmd.Parameters.AddWithValue("@Email", booking.Email);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@Name", booking.Name);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@GoingFrom", booking.GoingFrom);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@GoingTo", booking.GoingTo);
-                    DatabaseConnection.cmd.Parameters.AddWithValue("@ArrivalDate", DateTime.Now);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@DepartureDate", DateTime.Now);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@DayOfStaying", booking.DayOfStaying);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@HotelName", booking.HotelName);
+                    DatabaseConnection.cmd.Parameters.AddWithValue("@NumberOfRooms", booking.NumberOfRooms);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@NOPeople", booking.NOPeople);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@LastUpdateBy", 1);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@LastUpdateDate", DateTime.Now);
                     DatabaseConnection.cmd.Parameters.AddWithValue("@LastUpdateNumber", 1);
-
                     DatabaseConnection.cmd.ExecuteNonQuery();
                 }
             }
@@ -137,8 +141,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
         }
         #endregion
 
-     
-
+        #region GetBookingByID
         public Booking GetBookingById(int id)
         {
             try
@@ -157,13 +160,13 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
                             if (reader.Read())
                             {
                                 booking.BookingID = (int)reader["BookingID"];
-                                booking.FirstName = reader["FirstName"].ToString();
-                                booking.LastName = reader["LastName"].ToString();
-                                booking.Email = reader["Email"].ToString();
+                                booking.Name = reader["Name"].ToString();
                                 booking.GoingFrom = reader["GoingFrom"].ToString();
                                 booking.GoingTo = reader["GoingTo"].ToString();
-                                booking.ArrivalDate = (DateTime)reader["ArrivalDate"];
                                 booking.DepartureDate = (DateTime)reader["DepartureDate"];
+                                booking.DayOfStaying = reader["DayOfStaying"].ToString();
+                                booking.HotelName = reader["HotelName"].ToString();
+                                booking.NumberOfRooms = (int)reader["NumberOfRooms"];
                                 booking.NOPeople = (int)reader["NOPeople"];
                             }
                         }
@@ -176,7 +179,8 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
                 return null;
             }
         }
-
+        #endregion
 
     }
 }
+

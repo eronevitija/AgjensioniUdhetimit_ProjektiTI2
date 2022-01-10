@@ -165,46 +165,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
         }
         #endregion
 
-        //#region SearchByNameAndAddress
-        //public Client GetClientName(string name)
-        //{
-        //    try
-        //    {
-        //        Client client = new Client();
-        //        using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
-        //        {
-        //            DatabaseConnection.sqlConnection.Open();
-        //            using (DatabaseConnection.cmd = new SqlCommand("usp_SearchClient", DatabaseConnection.sqlConnection))
-        //            {
-        //                DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
-        //                DatabaseConnection.cmd.Parameters.AddWithValue("@Name", name);
-
-        //                using (SqlDataReader reader = DatabaseConnection.cmd.ExecuteReader())
-        //                {
-        //                    if (reader.Read())
-        //                    {
-        //                        client.ClientID = (int)reader["ClientID"];
-        //                        client.FirstName = reader["FirstName"].ToString();
-        //                        client.LastName = reader["LastName"].ToString();
-        //                        client.Address = reader["Address"].ToString();
-        //                        client.PhoneNumber = (int)reader["PhoneNumber"];
-        //                        client.Email = reader["Email"].ToString();
-
-
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        return client;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return null;
-        //    }
-        //}
-        //#endregion
-
-
         public Client Search(string name)
         {
             DataSet ds;

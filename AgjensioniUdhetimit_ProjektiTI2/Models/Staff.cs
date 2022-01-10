@@ -3,34 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using AgjensioniUdhetimit_ProjektiTI2.Resources;
 
 
 namespace AgjensioniUdhetimit_ProjektiTI2.Models
 {
     public class Staff : Base
     {
-
         public int StaffID { get; set; }
-        [Required]
+
+        [Display(Name = "FirstName", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "FirstNameRequired")]
         public string FirstName { get; set; }
-        [Required]
+
+
+        [Display(Name = "LastName", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "LastNameRequired")]
         public string LastName { get; set; }
-        [Required]
+
+        [Display(Name = "Gender", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "GenderRequired")]
         public string Gender { get; set; }
-        [Required]
+
+        [Display(Name = "Address", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "AddressRequired")]
         public string Address { get; set; }
-        [Required]
+
+        [Display(Name = "Email", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "EmailRequired")]
         public string Email { get; set; }
-        [Required]
+
+        [Display(Name = "PhoneNumber", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "PhoneNumberRequired")]
         public int PhoneNumber { get; set; }
-        [Required]
-        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+
+        [Display(Name = "Birthdate", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "BirthdateRequired")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Birthdate { get; set; }
     
-        public Staff()
-        {
-
-        }
+        public Staff(){}
         public Staff(int staffID,string firstName,string lastName,string gender,
             string address,string email,int phoneNumber,DateTime birthDate)
         {
@@ -43,7 +55,5 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
             PhoneNumber = phoneNumber;
             Birthdate = birthDate;
         }
-
-
     }
 }

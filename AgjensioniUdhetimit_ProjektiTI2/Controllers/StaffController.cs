@@ -85,15 +85,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
             }
         }
 
-        public ActionResult CheckLogin(string username,string password)
-        {
-            if (ModelState.IsValid)
-            {
-                StaffService.CheckLogInConfig(username, password);
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
+       
 
         public ActionResult GetAllStaff()
         {

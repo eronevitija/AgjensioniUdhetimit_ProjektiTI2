@@ -18,42 +18,39 @@
 
 
 <p style="margin-top:5%">
-    @Html.ActionLink("Add New Ticket", "Create", null, new {@class = "nav-link" })
+    @Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Add_new_Ticket, "Create", null, new {@class = "nav-link text-dark" })
 </p>
 <table class="table">
-    <thead class="thead-dark">
+    <thead class="thead-light">
         <tr>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>DateCreated</th>
-            <th>Deadline</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.FirstName</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.LastName</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.DateCreated</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Deadline</th>
             <th></th>
         </tr>
     </thead>
-
     <tbody>
-
         @foreach (var item in Model)
          {
             <tr>
               <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+              @Html.DisplayFor(modelItem => item.FirstName)
               </td>
-               <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-               </td>
-                <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-                </td>
-                 <td>
-            @Html.DisplayFor(modelItem => item.Deadline)
-                 </td>
-
-                 <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.TicketID }, new { @class = "btn btn-light" })
-            @Html.ActionLink("Delete", "Delete", new { id = item.TicketID }, new { @class = "btn btn-light" })
-                 </td>
-                </tr>
+              <td>
+              @Html.DisplayFor(modelItem => item.LastName)
+              </td>
+              <td>
+              @Html.DisplayFor(modelItem => item.DateCreated)
+              </td>
+             <td>
+             @Html.DisplayFor(modelItem => item.Deadline)
+             </td>
+             <td>
+              @Html.ActionLink(@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Edit, "Edit", new { id = item.TicketID }, new { @class = "btn btn-light" })
+              @Html.ActionLink(@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Delete, "Delete", new { id = item.TicketID }, new { @class = "btn btn-light" })
+             </td>
+            </tr>
          }
         </tbody>
 </table>

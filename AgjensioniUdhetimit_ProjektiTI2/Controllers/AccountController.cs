@@ -12,25 +12,20 @@ using AgjensioniUdhetimit_ProjektiTI2.Models;
 
 namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
 {
-    [Authorize]
+    [Authorize(Roles="Admin")]
     public class AccountController : Controller
     {
-
-       
-
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public AccountController()
         {
         }
-
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
         public ApplicationSignInManager SignInManager
         {
             get
@@ -42,7 +37,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
                 _signInManager = value; 
             }
         }
-
         public ApplicationUserManager UserManager
         {
             get
@@ -54,7 +48,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
                 _userManager = value;
             }
         }
-
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -63,7 +56,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
         //
         // POST: /Account/Login
         [HttpPost]
@@ -75,7 +67,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
             {
                 return View(model);
             }
-
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
@@ -106,7 +97,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
             }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
-
         //
         // POST: /Account/VerifyCode
         [HttpPost]
@@ -118,7 +108,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
             {
                 return View(model);
             }
-
             // The following code protects for brute force attacks against the two factor codes. 
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
@@ -144,7 +133,6 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
         {
             return View();
         }
-
         //
         // POST: /Account/Register
         [HttpPost]

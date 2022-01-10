@@ -2,7 +2,7 @@
 @using AgjensioniUdhetimit_ProjektiTI2.Resources;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Clients;
 }
 
 <link rel="stylesheet" href="~/Content/assets/vendor/animate/animate.css">
@@ -17,42 +17,34 @@
 <script src="sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 
-<a href="@Url.Action("ChangeLanguage","Clients", new { lang="en"})">English</a> |
-<a href="@Url.Action("ChangeLanguage","Clients", new { lang="al"})">Albanian</a> |
-
-
 <p style="margin-top:3%">
-    @Html.ActionLink("Add new Client", "Create", null, new { @class = "nav-link text-secondary" })
+    @Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Add_new_Client, "Create", null, new { @class = "nav-link text-dark" })
 </p>
+<!--Search by data-->
+<div class="container">
+    <b>Search By: </b>
+    <select id="selectOption" class="p-1">
+        <option value="firstName">FirstName</option>
+        <option value="lastName">LastName</option>
+        <option value="address">Address</option>
+        <option value="phoneNumber">PhoneNumber</option>
+        <option value="email">Email</option>
+    </select>
+    @Html.TextBox("Search") <input type="submit" id="searchBtn" value="Search" /> <br /><br />
+</div>
 
-@*@using (Html.BeginForm("Index", "Clients", FormMethod.Get))
-{
-    <div>
-        <form class="form-inline" action="#">
-            <p>
-                Find by name
-                @Html.TextBox("search", null, new { @class = "col-lg-2 py-2" })
-                <input type="submit" value="Search" class="btn btn-light" />
-            </p>
-        </form>
-    </div>
-}*@
-
-
-
-<table class="table " id="clientTable" style="margin-top:2%">
-    <thead class="thead-dark">
+<table id="clientTable" class="table " style="margin-top:2%">
+    <thead class="thead-light">
         <tr>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>Address</th>
-            <th>PhoneNumber</th>
-            <th>Email</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.FirstName</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.LastName</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Address</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.PhoneNumber</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Email</th>
             <th></th>
         </tr>
-
     </thead>
-    <tbody>
+    <tbody id="data">
         @foreach (var item in Model)
         {
             <tr>
@@ -73,8 +65,8 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ClientID }, new { @class = "btn btn-light" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ClientID }, new { @class = "btn btn-light" })
+                    @Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Edit, "Edit", new { id = item.ClientID }, new { @class = "btn btn-light" })
+                    @Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Delete, "Delete", new { id = item.ClientID }, new { @class = "btn btn-light" })
                 </td>
             </tr>
         }

@@ -1,7 +1,7 @@
 ﻿@model AgjensioniUdhetimit_ProjektiTI2.Models.Staff
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Edit;
 }
 
 <link rel="stylesheet" href="~/Content/assets/vendor/animate/animate.css">
@@ -16,7 +16,7 @@
 <script src="sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 
-<h2>Edit</h2>
+<h2>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Edit_Staff</h2>
 
 @using (Html.BeginForm())
 {
@@ -81,8 +81,6 @@
             @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
         </div>
     </div>
-
-
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

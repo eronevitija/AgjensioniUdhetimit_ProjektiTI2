@@ -1,7 +1,7 @@
 ﻿@model AgjensioniUdhetimit_ProjektiTI2.Models.Client
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Edit;
 }
 
 <link rel="stylesheet" href="~/Content/assets/vendor/animate/animate.css">
@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="~/Content/assets/css/maicons.css">
 <link rel="stylesheet" href="~/Content/assets/vendor/owl-carousel/css/owl.carousel.css">
 <link rel="stylesheet" href="~/Content/assets/css/theme.css">
-<h2 style="margin-top:5%">Edit Client</h2>
+<h2 style="margin-top:5%">@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Edit_Client</h2>
 
 
 @using (Html.BeginForm("Edit","Clients",FormMethod.Post))

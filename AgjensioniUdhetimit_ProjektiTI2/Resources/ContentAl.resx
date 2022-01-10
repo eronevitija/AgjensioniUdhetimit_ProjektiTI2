@@ -117,14 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add new Booking" xml:space="preserve">
+    <value>Shto Rezervim te ri</value>
+  </data>
+  <data name="Add new Client" xml:space="preserve">
+    <value>Shto Klient te ri</value>
+  </data>
+  <data name="Add new Staff" xml:space="preserve">
+    <value>Shto Staf te ri</value>
+  </data>
+  <data name="Add new Ticket" xml:space="preserve">
+    <value>Shto Bilete te re</value>
+  </data>
   <data name="Address" xml:space="preserve">
     <value>Adresa</value>
   </data>
   <data name="Address is required" xml:space="preserve">
     <value>Kerkohet Adresa</value>
   </data>
+  <data name="Are you sure you want to delete this?" xml:space="preserve">
+    <value>A jeni i sigurt se deshironi ta fshini kete?</value>
+  </data>
   <data name="Birthdate" xml:space="preserve">
     <value>Datelindja</value>
+  </data>
+  <data name="BirthdateRequired" xml:space="preserve">
+    <value>Kerkohet datelindja</value>
+  </data>
+  <data name="Booking" xml:space="preserve">
+    <value>Rezervimi</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Klientet</value>
   </data>
   <data name="DateCreated" xml:space="preserve">
     <value>Fillimi</value>
@@ -132,14 +156,53 @@
   <data name="DateCreated is required" xml:space="preserve">
     <value>Kerkohet Data e krijimit</value>
   </data>
+  <data name="DayOfStayingRequired" xml:space="preserve">
+    <value>Kerkohet dita e qendrimit</value>
+  </data>
   <data name="Deadline" xml:space="preserve">
     <value>Mbarimi</value>
   </data>
   <data name="Deadline is required" xml:space="preserve">
     <value>Kerkohet Koha Mbarimit</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Fshij</value>
+  </data>
+  <data name="Delete Booking" xml:space="preserve">
+    <value>Fshij Rezervimin</value>
+  </data>
+  <data name="Delete Client" xml:space="preserve">
+    <value>Fshij Klientin</value>
+  </data>
+  <data name="Delete Staff" xml:space="preserve">
+    <value>Fshij Stafin</value>
+  </data>
+  <data name="Delete Ticket" xml:space="preserve">
+    <value>Fshij Bileten</value>
+  </data>
+  <data name="DepartureDateRequired" xml:space="preserve">
+    <value>Kerkohet data nisjes</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifiko</value>
+  </data>
+  <data name="Edit Booking" xml:space="preserve">
+    <value>Modifiko Rezervimin</value>
+  </data>
+  <data name="Edit Client" xml:space="preserve">
+    <value>Modifiko Klientin</value>
+  </data>
+  <data name="Edit Staff" xml:space="preserve">
+    <value>Modifiko Stafin</value>
+  </data>
+  <data name="Edit Ticket" xml:space="preserve">
+    <value>Modifiko Bileten</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email Adresa</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Kerkohet email adresa</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>Emri</value>
@@ -153,16 +216,40 @@
   <data name="Gender is required" xml:space="preserve">
     <value>Kerkohet Gjinia</value>
   </data>
+  <data name="GoingFromRequired" xml:space="preserve">
+    <value>Kerkohet nisja prej</value>
+  </data>
+  <data name="GoingToRequired" xml:space="preserve">
+    <value>Kerkohet nisja ne</value>
+  </data>
+  <data name="HotelNameRequired" xml:space="preserve">
+    <value>Kerkohet emri hotelit</value>
+  </data>
   <data name="LastName" xml:space="preserve">
     <value>Mbiemri</value>
   </data>
   <data name="LastName is required" xml:space="preserve">
     <value>Kerkohet Mbiemri</value>
   </data>
+  <data name="Log in" xml:space="preserve">
+    <value>Kyqu</value>
+  </data>
+  <data name="Log off" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="NOPeopleRequired" xml:space="preserve">
+    <value>Kerkohet numri personave</value>
+  </data>
+  <data name="NumberOfRoomsRequired" xml:space="preserve">
+    <value>Kerkohet numri i dhomave</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Numri Telefonit</value>
   </data>
   <data name="PhoneNumber is required" xml:space="preserve">
     <value>Kerkohet NumriTelefonit </value>
+  </data>
+  <data name="Ticket" xml:space="preserve">
+    <value>Bileta</value>
   </data>
 </root>

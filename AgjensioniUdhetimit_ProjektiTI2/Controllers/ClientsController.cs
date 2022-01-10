@@ -20,20 +20,11 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
         {
             return View(ClientService.GetAllClients());
         }
-
-        public ActionResult ChangeLanguage(string lang)
+        [HttpPost]
+        public ActionResult Index(string search)
         {
-            Session["lang"] = lang;
-            return RedirectToAction("Index", "Clients", new { language = lang });
+            return View(clientService.Search(search));
         }
-
-        //[HttpPost]
-        //public ActionResult Index(string language)
-        //{
-        //    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
-        //    Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-        //    return View();
-        //}
 
         // GET: Clients/Details/5
         public ActionResult Details(int id)
@@ -101,13 +92,8 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
             }
         }
 
-        public ActionResult GetAll()
-        {
-            List<Client> client = ClientService.GetAllClients();
-            return Json(new { data = client }, JsonRequestBehavior.AllowGet);
-        }
-
        
+
     }
 }
 

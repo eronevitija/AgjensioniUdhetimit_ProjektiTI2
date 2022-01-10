@@ -1,113 +1,104 @@
 ﻿ <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Travel Agency</title>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>@ViewBag.Title - Travel Agency</title>
+ </head>
+ <body>
+     @if (User.Identity.IsAuthenticated)
+     {
+         <header>
+             <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                 <a href="#" style="margin-left:5%">
+                     @Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Travel_Agency, "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-secondary" })
+                 </a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                         aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="navbar-toggler-icon"></span>
+                 </button>
+                 <div class="collpase navbar-collapse">
+                     <ul class="navbar-nav mr-auto">
+                         <li class="nav-item">@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Clients, "Index", "Clients", null, new { @class = "nav-link" })</li>
+                         <li class="nav-item">@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Staff, "Index", "Staff", null, new { @class = "nav-link" })</li>
+                         <li class="nav-item">@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Booking, "Index", "Booking", null, new { @class = "nav-link" })</li>
+                         <li class="nav-item">@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Ticket, "Index", "Ticket", null, new { @class = "nav-link" })</li>
+                     </ul>
+                     <ul class="nav navbar-nav navbar-right">
+                         <li>@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.EN, "ChangeLanguage", "Language", null ,new { language = "en-US" ,@class = "nav-link"})</li>
+                         <li>@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.AL, "ChangeLanguage", "Language", null ,new { language = "sq-AL", @class = "nav-link" })</li>
+                     </ul>
+                     @Html.Partial("_LoginPartial") 
+                 </div>
+             </nav>
+         </header>
+     }
+     <div class="container body-content">
+         @RenderBody()
+         @if (User.Identity.IsAuthenticated)
+         {
+             <footer class="page-footer mt-5" id="footer">
+                 <div class="container">
+                     <div class="row justify-content-center mb-5">
+                         <div class="col-lg-3 py-3">
+                             <h3>Travel Agency</h3>
+                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                             <p><a href="mailto:travelagency@gmail.com">travelagency@gmail.com</a></p>
+                             <p><a href="#">+00 1122 3344 5566</a></p>
+                         </div>
+                         <div class="col-lg-3 py-3">
+                             <h5>Quick Links</h5>
+                             <ul class="footer-menu">
+                                 <li><a href="#">How it works</a></li>
+                                 <li><a href="#">Security</a></li>
+                                 <li><a href="#">Pricing</a></li>
+                                 <li><a href="#">Resources</a></li>
+                                 <li><a href="#">Report a Bug</a></li>
+                             </ul>
+                         </div>
+                         <div class="col-lg-3 py-3">
+                             <h5>About Us</h5>
+                             <ul class="footer-menu">
+                                 <li><a href="#">About Us</a></li>
+                                 <li><a href="#">Jobs</a></li>
+                                 <li><a href="#">Our Teams</a></li>
+                                 <li><a href="#">Testimonials</a></li>
+                                 <li><a href="#">News & Press</a></li>
+                             </ul>
+                         </div>
+                         <div class="col-lg-3 py-3">
+                             <h5>Subscribe</h5>
+                             <form action="#">
+                                 <input type="text" class="form-control" placeholder="Enter your mail..">
+                             </form>
+                             <div class="sosmed-button mt-4">
+                                 <a href="#"><span class="mai-logo-facebook-f"></span></a>
+                                 <a href="#"><span class="mai-logo-twitter"></span></a>
+                                 <a href="#"><span class="mai-logo-google"></span></a>
+                                 <a href="#"><span class="mai-logo-linkedin"></span></a>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-sm-6 py-2">
+                             <p id="copyright">&copy; 2021 <a href="https://macodeid.com/">Prishtine</a>. All rights reserved</p>
+                         </div>
+                         <div class="col-sm-6 py-2 text-right">
+                             <div class="d-inline-block px-3">
+                                 <a href="#">Privacy</a>
+                             </div>
+                             <div class="d-inline-block px-3">
+                                 <a href="#">Contact Us</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </footer>
+         }
+     </div>
+     @Scripts.Render("~/bundles/jquery")
+     @Scripts.Render("~/bundles/bootstrap")
+     @RenderSection("scripts", required: false)
 
-</head>
-<body>
-    @if (User.Identity.IsAuthenticated)
-    {
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a href="#" style="margin-left:5%">
-                    @Html.ActionLink("Travel Agency", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-secondary" })
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collpase navbar-collapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Clients, "Index", "Clients", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Staff, "Index", "Staff", null, new { @class = "nav-link" })</li>
-
-                        <li class="nav-item">@Html.ActionLink("Booking", "Index", "Booking", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Ticket", "Index", "Ticket", null, new { @class = "nav-link" })</li>
-                    </ul>
-                    @*<a href="@Url.Action("ChangeLanguage","Home", new { lang = "en"})">EN</a> |
-                    <a href="@Url.Action("ChangeLanguage","Home", new { lang = "al"})">AL</a> |*@
-                        @Html.Partial("_LoginPartial")
-                </div>
-            </nav>
-        </header>
-    }
-
-
-
-
-<div class="container body-content">
-    @RenderBody()
-    @if (User.Identity.IsAuthenticated)
-    {
-        <footer class="page-footer mt-5" id="footer">
-            <div class="container">
-                <div class="row justify-content-center mb-5">
-                    <div class="col-lg-3 py-3">
-                        <h3>Travel Agency</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-
-                        <p><a href="mailto:travelagency@gmail.com">travelagency@gmail.com</a></p>
-                        <p><a href="#">+00 1122 3344 5566</a></p>
-                    </div>
-                    <div class="col-lg-3 py-3">
-                        <h5>Quick Links</h5>
-                        <ul class="footer-menu">
-                            <li><a href="#">How it works</a></li>
-                            <li><a href="#">Security</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Resources</a></li>
-                            <li><a href="#">Report a Bug</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 py-3">
-                        <h5>About Us</h5>
-                        <ul class="footer-menu">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Our Teams</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                            <li><a href="#">News & Press</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 py-3">
-                        <h5>Subscribe</h5>
-                        <form action="#">
-                            <input type="text" class="form-control" placeholder="Enter your mail..">
-                        </form>
-
-                        <div class="sosmed-button mt-4">
-                            <a href="#"><span class="mai-logo-facebook-f"></span></a>
-                            <a href="#"><span class="mai-logo-twitter"></span></a>
-                            <a href="#"><span class="mai-logo-google"></span></a>
-                            <a href="#"><span class="mai-logo-linkedin"></span></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6 py-2">
-                        <p id="copyright">&copy; 2021 <a href="https://macodeid.com/">Prishtine</a>. All rights reserved</p>
-                    </div>
-                    <div class="col-sm-6 py-2 text-right">
-                        <div class="d-inline-block px-3">
-                            <a href="#">Privacy</a>
-                        </div>
-                        <div class="d-inline-block px-3">
-                            <a href="#">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    }
-    </div>
-    
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    
-</body>
-</html>
+ </body>
+ </html>

@@ -12,7 +12,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        public ActionResult Index(string language)
+        public ActionResult Index()
         {
             return View();
         }

@@ -7,6 +7,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
 {
     public class IndexViewModel
     {
+        [Key]
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }

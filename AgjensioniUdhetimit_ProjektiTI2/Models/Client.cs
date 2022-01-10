@@ -12,22 +12,31 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
     public class Client : Base
     {
         public int ClientID { get; set; }
-        [Required]
+
+        [Display(Name = "FirstName",ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType =typeof(Content),ErrorMessageResourceName = "FirstNameRequired")]
         public string FirstName { get; set; }
 
-        [Required]
+
+        [Display(Name = "LastName", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "LastNameRequired")]
         public string LastName { get; set; }
 
-        [Required]
+
+        [Display(Name = "Address", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "AddressRequired")]
         public string Address { get; set; }
-        [Required]
+
+
+        [Display(Name = "PhoneNumber", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "PhoneNumberRequired")]
         public int PhoneNumber { get; set; }
-        [Required]
+
+        [Display(Name = "Email", ResourceType = typeof(Content))]
+        [Required(ErrorMessageResourceType = typeof(Content), ErrorMessageResourceName = "EmailRequired")]
         public string Email { get; set; }
 
-        public Client()
-        {
-        }
+        public Client(){}
 
        public Client(int clientID, string firstName, string lastName, string address,  int phoneNumber, string email)
        {
@@ -37,7 +46,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Models
             Address = address;
             PhoneNumber = phoneNumber;
             Email = email;
-        }
+       }
 
     }
 }

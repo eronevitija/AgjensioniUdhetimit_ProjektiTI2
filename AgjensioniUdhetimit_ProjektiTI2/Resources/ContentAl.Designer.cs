@@ -61,6 +61,42 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shto Rezervim te ri.
+        /// </summary>
+        public static string Add_new_Booking {
+            get {
+                return ResourceManager.GetString("Add new Booking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shto Klient te ri.
+        /// </summary>
+        public static string Add_new_Client {
+            get {
+                return ResourceManager.GetString("Add new Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shto Staf te ri.
+        /// </summary>
+        public static string Add_new_Staff {
+            get {
+                return ResourceManager.GetString("Add new Staff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shto Bilete te re.
+        /// </summary>
+        public static string Add_new_Ticket {
+            get {
+                return ResourceManager.GetString("Add new Ticket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adresa.
         /// </summary>
         public static string Address {
@@ -79,11 +115,47 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A jeni i sigurt se deshironi ta fshini kete?.
+        /// </summary>
+        public static string Are_you_sure_you_want_to_delete_this_ {
+            get {
+                return ResourceManager.GetString("Are you sure you want to delete this?", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Datelindja.
         /// </summary>
         public static string Birthdate {
             get {
                 return ResourceManager.GetString("Birthdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kerkohet datelindja.
+        /// </summary>
+        public static string BirthdateRequired {
+            get {
+                return ResourceManager.GetString("BirthdateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rezervimi.
+        /// </summary>
+        public static string Booking {
+            get {
+                return ResourceManager.GetString("Booking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Klientet.
+        /// </summary>
+        public static string Clients {
+            get {
+                return ResourceManager.GetString("Clients", resourceCulture);
             }
         }
         
@@ -106,6 +178,15 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kerkohet dita e qendrimit.
+        /// </summary>
+        public static string DayOfStayingRequired {
+            get {
+                return ResourceManager.GetString("DayOfStayingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mbarimi.
         /// </summary>
         public static string Deadline {
@@ -124,11 +205,119 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fshij.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fshij Rezervimin.
+        /// </summary>
+        public static string Delete_Booking {
+            get {
+                return ResourceManager.GetString("Delete Booking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fshij Klientin.
+        /// </summary>
+        public static string Delete_Client {
+            get {
+                return ResourceManager.GetString("Delete Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fshij Stafin.
+        /// </summary>
+        public static string Delete_Staff {
+            get {
+                return ResourceManager.GetString("Delete Staff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fshij Bileten.
+        /// </summary>
+        public static string Delete_Ticket {
+            get {
+                return ResourceManager.GetString("Delete Ticket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kerkohet data nisjes.
+        /// </summary>
+        public static string DepartureDateRequired {
+            get {
+                return ResourceManager.GetString("DepartureDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifiko.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifiko Rezervimin.
+        /// </summary>
+        public static string Edit_Booking {
+            get {
+                return ResourceManager.GetString("Edit Booking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifiko Klientin.
+        /// </summary>
+        public static string Edit_Client {
+            get {
+                return ResourceManager.GetString("Edit Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifiko Stafin.
+        /// </summary>
+        public static string Edit_Staff {
+            get {
+                return ResourceManager.GetString("Edit Staff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifiko Bileten.
+        /// </summary>
+        public static string Edit_Ticket {
+            get {
+                return ResourceManager.GetString("Edit Ticket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email Adresa.
         /// </summary>
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kerkohet email adresa.
+        /// </summary>
+        public static string EmailRequired {
+            get {
+                return ResourceManager.GetString("EmailRequired", resourceCulture);
             }
         }
         
@@ -169,6 +358,33 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kerkohet nisja prej.
+        /// </summary>
+        public static string GoingFromRequired {
+            get {
+                return ResourceManager.GetString("GoingFromRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kerkohet nisja ne.
+        /// </summary>
+        public static string GoingToRequired {
+            get {
+                return ResourceManager.GetString("GoingToRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kerkohet emri hotelit.
+        /// </summary>
+        public static string HotelNameRequired {
+            get {
+                return ResourceManager.GetString("HotelNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mbiemri.
         /// </summary>
         public static string LastName {
@@ -187,6 +403,42 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kyqu.
+        /// </summary>
+        public static string Log_in {
+            get {
+                return ResourceManager.GetString("Log in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dil.
+        /// </summary>
+        public static string Log_off {
+            get {
+                return ResourceManager.GetString("Log off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kerkohet numri personave.
+        /// </summary>
+        public static string NOPeopleRequired {
+            get {
+                return ResourceManager.GetString("NOPeopleRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kerkohet numri i dhomave.
+        /// </summary>
+        public static string NumberOfRoomsRequired {
+            get {
+                return ResourceManager.GetString("NumberOfRoomsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Numri Telefonit.
         /// </summary>
         public static string PhoneNumber {
@@ -201,6 +453,15 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Resources {
         public static string PhoneNumber_is_required {
             get {
                 return ResourceManager.GetString("PhoneNumber is required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bileta.
+        /// </summary>
+        public static string Ticket {
+            get {
+                return ResourceManager.GetString("Ticket", resourceCulture);
             }
         }
     }

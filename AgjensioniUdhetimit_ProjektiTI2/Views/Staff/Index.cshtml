@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<AgjensioniUdhetimit_ProjektiTI2.Models.Staff>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Staff;
 }
-
-
 <link rel="stylesheet" href="~/Content/assets/vendor/animate/animate.css">
 <link rel="stylesheet" href="~/Content/assets/css/bootstrap.css">
 <link rel="stylesheet" href="~/Content/assets/css/maicons.css">
@@ -17,20 +15,19 @@
 <script src="sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 
-
 <p style="margin-top:3%">
-    @Html.ActionLink("Add new Staff", "Create", null, new { @class = "nav-link text-secondary"})
+    @Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Add_new_Staff, "Create", null, new { @class = "nav-link text-dark"})
 </p>
 <table class="table " id="clientTable" style="margin-top:2%">
-    <thead class="thead-dark">
+    <thead class="thead-light">
         <tr>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>Gender</th>
-            <th>Address</th>
-            <th>Email</th>
-            <th>PhoneNumber</th>
-            <th>Birthdate</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.FirstName</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.LastName</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Gender</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Address</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Email</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.PhoneNumber</th>
+            <th>@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Birthdate</th>
             <th></th>
             <th></th>
         </tr>
@@ -62,8 +59,8 @@
                 @Html.DisplayFor(modelItem => item.Birthdate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.StaffID }, new { @class = "btn btn-light" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.StaffID }, new { @class = "btn btn-light" })
+                @Html.ActionLink(@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Edit, "Edit", new { id = item.StaffID }, new { @class = "btn btn-light" })
+                @Html.ActionLink(@AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Delete, "Delete", new { id = item.StaffID }, new { @class = "btn btn-light" })
             </td>
         </tr>
             }
