@@ -20,18 +20,6 @@
 <p style="margin-top:3%">
     @Html.ActionLink(AgjensioniUdhetimit_ProjektiTI2.Resources.Content.Add_new_Client, "Create", null, new { @class = "nav-link text-dark" })
 </p>
-<!--Search by data-->
-<div class="container">
-    <b>Search By: </b>
-    <select id="selectOption" class="p-1">
-        <option value="firstName">FirstName</option>
-        <option value="lastName">LastName</option>
-        <option value="address">Address</option>
-        <option value="phoneNumber">PhoneNumber</option>
-        <option value="email">Email</option>
-    </select>
-    @Html.TextBox("Search") <input type="submit" id="searchBtn" value="Search" /> <br /><br />
-</div>
 
 <table id="clientTable" class="table " style="margin-top:2%">
     <thead class="thead-light">

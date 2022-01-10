@@ -165,36 +165,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Services
         }
         #endregion
 
-        public Client Search(string name)
-        {
-            DataSet ds;
-            Client client;
-            try
-            {
-                using (DatabaseConnection.sqlConnection = new SqlConnection(DatabaseConnection.connString))
-                {
-                    DatabaseConnection.sqlConnection.Open();
-                    DatabaseConnection.cmd = new SqlCommand("usp_SearchClient", DatabaseConnection.sqlConnection);
-                    DatabaseConnection.cmd.CommandType = CommandType.StoredProcedure;
-                    DatabaseConnection.cmd.Parameters.AddWithValue("@Name", name);
-                    DatabaseConnection.sqlDataAdapter = new SqlDataAdapter(DatabaseConnection.cmd);
-                    ds = new DataSet();
-                    DatabaseConnection.sqlDataAdapter.Fill(ds);
-                    string clientID = Convert.ToString((ds.Tables[0].Rows[0]["ClientID"]));
-                    string firstName = Convert.ToString(ds.Tables[0].Rows[0]["FirstName"]);
-                    string lastName = Convert.ToString(ds.Tables[0].Rows[0]["LastName"]);
-                    string address = Convert.ToString(ds.Tables[0].Rows[0]["Address"]);
-                    string phoneNumber = Convert.ToString(ds.Tables[0].Rows[0]["PhoneNumber"]);
-                    string email = Convert.ToString(ds.Tables[0].Rows[0]["Email"]);
-                    client = new Client(Int32.Parse(clientID), firstName, lastName, address, Int32.Parse(phoneNumber), email);
-                    return client;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+       
     }
 }
 

@@ -20,11 +20,7 @@ namespace AgjensioniUdhetimit_ProjektiTI2.Controllers
         {
             return View(ClientService.GetAllClients());
         }
-        [HttpPost]
-        public ActionResult Index(string search)
-        {
-            return View(clientService.Search(search));
-        }
+        
 
         // GET: Clients/Details/5
         public ActionResult Details(int id)
